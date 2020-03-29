@@ -12,5 +12,5 @@ def blog_home(request):
 
 
 def blog_detail(request, post_id):
-    post = Posts.objects.get(post_id)
+    post = Posts.objects.get(id=post_id)
     return render(request, 'blog/detail.html', {'post': post})
