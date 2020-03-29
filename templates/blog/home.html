@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    博客文章
+{% endblock %}
+
+{% block header %}
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{% static 'img/home-bg.jpg' %}')">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1>宁静致远</h1>
+                        <span class="subheading">一个由Bootstrap和Django创建的博客</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                {% for post in posts %}
+                    <div class="post-preview">
+                        <a href="{{ post.id }}"><h2 class="post-title">{{ post.title }}</h2></a>
+                        <p style="font: caption;" class="post-meta">作者：<a
+                                href="#">{{ post.author }}</a>　{{ post.publish }}</p>
+                    </div>
+                    <hr>
+                {% endfor %}
+                <!-- Pager -->
+                <div class="clearfix">
+                    {% include 'paginator.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

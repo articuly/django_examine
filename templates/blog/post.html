@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block header %}
+    {% include 'backend_header.html' %}
+{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-9 col-md-11 mx-auto">
+                <form class="form-horizontal" action="" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="">标题：</div>
+                        <div class="col-sm-10">{{ form.title }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="">内容：</div>
+                        <div class="col-sm-10">{{ form.content }}</div>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="发布文章">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
