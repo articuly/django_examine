@@ -14,3 +14,21 @@ def blog_home(request):
 def blog_detail(request, post_id):
     post = Posts.objects.get(id=post_id)
     return render(request, 'blog/detail.html', {'post': post})
+
+
+@login_required
+def blog_post(request):
+    if request.method == "GET":
+        form = PostsForm()
+        return render(request, 'blog/post.html', {'form': form})
+    if request.method == "POST":
+        form = PostsForm(request.POST)
+        if form.is_valid():
+            try:
+                post = form.save(commit=False)
+                post.author = request.user
+                post.save()
+            except Exception as e:
+                print(str(e))
+            else:
+                return HttpResponseRedirect('/blog/')

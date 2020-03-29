@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    用户登陆
+{% endblock %}
+
+{% block header %}
+    {% include 'backend_header.html' %}
+{% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1>登录</h1>
+                <p>输入用户名和密码</p>
+                {% if next %}
+                    <form class="form-horizontal" action="{% url 'account:user_login' %}?next={{ next }}" method="post">
+                {% else %}
+                    <form class="form-horizontal" action="{% url 'account:user_login' %}" method="post">
+                {% endif %}
+                {% csrf_token %}
+                <div class="form-group form-inline">
+                    <label class="col-sm-5 control-label">用户名：</label>
+                    <div class="col-sm-7">{{ form.username }}</div>
+                </div>
+                <div class="form-group form-inline">
+                    <label class="col-sm-5 control-label">密　码：</label>
+                    <div class="col-sm-7">{{ form.password }}</div>
+                </div>
+                <input type="submit" class="btn btn-primary float-right" value="登录">
+                </form>
+            </div>
+        </div>
+        {#        <p class="text-center">忘记密码怎么办：<a href="{% url 'account:password_reset' %}">重置密码</a></p>#}
+    </div>
+{% endblock %}
