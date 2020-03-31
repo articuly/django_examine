@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block style %}
-    {#    <link rel="stylesheet" href="{% static 'editor/css/editormd.preview.css' %}">#}
+    <link rel="stylesheet" href="{% static 'editor/css/editormd.preview.css' %}">
 {% endblock %}
 
 {% block header %}
@@ -35,35 +35,35 @@
                         <span>作者：{{ post.author.username }}</span>
                         <span style="margin-left: 10px">发布时间：{{ post.publish }}</span>
                     </p>
-                    <div>{{ post.content }}</div>
-                    {#                    <div id="editormd-view">#}
-                    {#                        <textarea id="append-test" style="display: none;">#}
-                    {#{{ article.content }}#}
-                    {#                        </textarea>#}
-                    {#                    </div>#}
+                    {# <div>{{ post.content }}</div> #}
+                    <div id="editormd-view">
+                                            <textarea id="append-test" style="display: none;">
+{{ post.content }}
+                                            </textarea>
+                    </div>
                 </div>
             </div>
         </div>
     </article>
-    {#    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>#}
-    {#    <script src="{% static 'editor/lib/marked.min.js' %}"></script>#}
-    {#    <script src="{% static 'editor/lib/prettify.min.js' %}"></script>#}
-    {#    <script src="{% static 'editor/lib/raphael.min.js' %}"></script>#}
-    {#    <script src="{% static 'editor/lib/underscore.min.js' %}"></script>#}
-    {#    <script src="{% static 'editor/lib/sequence-diagram.min.js' %}"></script>#}
-    {#    <script src="{% static 'editor/lib/flowchart.min.js' %}"></script>#}
-    {#    <script src="{% static 'editor/lib/jquery.flowchart.min.js' %}"></script>#}
-    {#    <script src="{% static 'editor/editormd.js' %}"></script>#}
-    {#    <script type="text/javascript">#}
-    {#        $(function () {#}
-    {#            editormd.markdownToHTML("editormd-view", {#}
-    {#                htmlDecode: "style, script, iframe",#}
-    {#                emoji: true,#}
-    {#                taskList: true,#}
-    {#                tex: true,#}
-    {#                flowChart: true,#}
-    {#                sequenceDiagram: true,#}
-    {#            })#}
-    {#        })#}
-    {#    </script>#}
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'editor/lib/marked.min.js' %}"></script>
+    <script src="{% static 'editor/lib/prettify.min.js' %}"></script>
+    <script src="{% static 'editor/lib/raphael.min.js' %}"></script>
+    <script src="{% static 'editor/lib/underscore.min.js' %}"></script>
+    <script src="{% static 'editor/lib/sequence-diagram.min.js' %}"></script>
+    <script src="{% static 'editor/lib/flowchart.min.js' %}"></script>
+    <script src="{% static 'editor/lib/jquery.flowchart.min.js' %}"></script>
+    <script src="{% static 'editor/editormd.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            editormd.markdownToHTML("editormd-view", {
+                htmlDecode: "style, script, iframe",
+                emoji: true,
+                taskList: true,
+                tex: true,
+                flowChart: true,
+                sequenceDiagram: true,
+            })
+        })
+    </script>
 {% endblock %}

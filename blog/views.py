@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Posts
 from django.contrib.auth.decorators import login_required
 from .forms import PostsForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -30,5 +30,8 @@ def blog_post(request):
                 post.save()
             except Exception as e:
                 print(str(e))
+                return JsonResponse({'result': str(e)})
             else:
-                return HttpResponseRedirect('/blog/')
+                return JsonResponse({'result': 'success'})
+        else:
+            return JsonResponse({'result': 'invalid'})
