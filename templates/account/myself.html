@@ -43,31 +43,31 @@
                     <button class="btn btn-primary ">修改个人信息</button>
                 </a>
             </div>
-            {#            <div class="col-md-5">#}
-            {#                <div style="margin-right: 100px;">#}
-            {#                    {% if userinfo.photo %}#}
-            {#                        <img alt="" src="{{ userinfo.photo | striptags }}" class="img-circle" id="my-photo">#}
-            {#                    {% else %}#}
-            {#                        <img alt="" src="{% static 'img/articuly.jpg' %}">#}
-            {#                    {% endif %}#}
-            {#                </div>#}
-            {#                <div style="margin-right: 100px;">#}
-            {#                    <button class="btn btn-primary" id="upload_image" onclick="upload_image_layer()">上传头像</button>#}
-            {#                </div>#}
-            {#            </div>#}
+            <div class="col-md-5">
+                <div style="margin-right: 100px;">
+                    {% if userinfo.photo %}
+                        <img alt="" src="{{ userinfo.photo | striptags }}" class="img-circle" id="my-photo">
+                    {% else %}
+                        <img alt="" src="{% static 'img/articuly.jpg' %}">
+                    {% endif %}
+                </div>
+                <div style="margin-right: 100px;">
+                    <button class="btn btn-primary" id="upload_image" onclick="upload_image_layer()">上传头像</button>
+                </div>
+            </div>
         </div>
     </div>
     {# 引入弹出层 #}
-    {#    <script type="text/javascript" src="{% static 'vendor/jquery/jquery.min.js' %}"></script>#}
-    {#    <script type="text/javascript" src="{% static 'js/layer.js' %}"></script>#}
-    {#    <script>#}
-    {#        function upload_image_layer() {#}
-    {#            layer.open({#}
-    {#                title: "选择图片",#}
-    {#                area: ["650px", "530px"],#}
-    {#                type: 2,#}
-    {#                content: "{% url 'account:my_image' %}"#}
-    {#            })#}
-    {#        }#}
-    {#    </script>#}
+    <script type="text/javascript" src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/layer.js' %}"></script>
+    <script>
+        function upload_image_layer() {
+            layer.open({
+                title: "选择图片",
+                area: ["650px", "530px"],
+                type: 2,
+                content: "{% url 'account:my_image' %}"
+            })
+        }
+    </script>
 {% endblock %}

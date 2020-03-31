@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import UserProfile
 from .forms import UserForm, UserProfileForm, RegistrationForm
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 
 
@@ -11,6 +11,8 @@ def register(request):
         return render(request, 'account/register.html', {'form': form})
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
+        print('form is')
+        print(form)
         if form.is_valid():
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
@@ -18,9 +20,9 @@ def register(request):
                 user.save()
             except Exception as e:
                 print(str(e))
-                return HttpResponse('<h1>对不起，注册失败。</h1>')
+                return JsonResponse({'result': 'fail'})
             else:
-                return HttpResponse('<h1>恭喜，注册成功。点击<a href="/account/login/">这里</a>登陆。</h1>')
+                return JsonResponse({'result': 'success'})
 
 
 @login_required
@@ -59,11 +61,8 @@ def myself_edit(request):
         else:
             return HttpResponse('个人信息验证不通过')
     else:
-        print('hello')
         user_form = UserForm(instance=request.user)
         form = UserProfileForm(
             initial={'phone': userprofile.phone, 'company': userprofile.company, 'job': userprofile.job,
                      'intro': userprofile.intro})
-        print(user_form)
-        print(form)
         return render(request, 'account/myself_edit.html', {'form': form, 'user_form': user_form})

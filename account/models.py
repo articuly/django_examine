@@ -8,6 +8,7 @@ class UserProfile(models.Model):
     company = models.CharField(max_length=50, blank=True)
     job = models.CharField(max_length=100, blank=True)
     intro = models.TextField(blank=True)
+    photo = models.ImageField(blank=True)
 
     def __str__(self):
         return 'user: {}'.format(self.user.username)

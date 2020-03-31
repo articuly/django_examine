@@ -20,7 +20,7 @@ class RegistrationForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('phone', 'company', 'job', 'intro')
+        fields = ('phone', 'company', 'job', 'intro', 'photo',)
 
 
 class UserForm(forms.ModelForm):
