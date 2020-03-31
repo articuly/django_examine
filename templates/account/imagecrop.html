@@ -55,12 +55,12 @@
                 type: "POST",
                 data: {"img": img},
                 success: function (e) {
-                    // location.href="{% url 'account:aboutme' %}"
-                    if (e == '1') {
+                    // location.href="{% url 'account:myself' %}"
+                    if (e.result == 'success') {
                         alert("图片上传成功");
                         parent.location.reload()
                     } else {
-                        alert("图片上传失败")
+                        console.log(e.result);
                     }
                 }
             })

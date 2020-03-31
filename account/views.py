@@ -11,8 +11,6 @@ def register(request):
         return render(request, 'account/register.html', {'form': form})
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
-        print('form is')
-        print(form)
         if form.is_valid():
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
@@ -66,3 +64,19 @@ def myself_edit(request):
             initial={'phone': userprofile.phone, 'company': userprofile.company, 'job': userprofile.job,
                      'intro': userprofile.intro})
         return render(request, 'account/myself_edit.html', {'form': form, 'user_form': user_form})
+
+
+@login_required
+def my_image(request):
+    if request.method == 'POST':
+        img = request.POST['img']
+        userprofile = UserProfile.objects.get(user=request.user)
+        userprofile.photo = img
+        try:
+            userprofile.save()
+        except Exception as e:
+            print(str(e))
+            return JsonResponse({'result': str(e)})
+        else:
+            return JsonResponse({'result': 'success'})
+    return render(request, 'account/imagecrop.html')
