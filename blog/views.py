@@ -8,7 +8,16 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def blog_home(request):
     posts = Posts.objects.all()
-    return render(request, 'blog/home.html', {'posts': posts})
+    paginator = Paginator(posts, 5)
+    page = request.GET.get('page')
+    try:
+        current_page = paginator.page(page)
+    except PageNotAnInteger:
+        current_page = paginator.page(1)
+    except EmptyPage:
+        current_page = paginator.page(paginator.num_pages)
+    current_posts = current_page.object_list
+    return render(request, 'blog/home.html', {'posts': current_posts, 'page': current_page})
 
 
 def blog_detail(request, post_id):
