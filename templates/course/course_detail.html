@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    课程详情
+{% endblock %}
+
+{% block header %}
+    {% include 'course_header.html' %}
+{% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <h1>{{ object.title }}</h1>
+                <p>讲师：{{ object.user.username }}</p>
+                <p>简介：{{ object.intro }}</p>
+                {% if object.video %}
+                    <video src="{{ object.video.url }}" controls="controls" width="800"></video>
+                {% else %}
+                    <p>没有视频内容</p>
+                {% endif %}
+                {% if object.attach %}
+                    <p>下载课件：<a href="{{ object.attach.url }}">{{ object.attach.name | slice:"15:" }}</a></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

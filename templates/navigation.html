@@ -9,11 +9,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="{% url 'blog:blog_home' %}">主页</a></li>
-                {#                <li class="nav-item"><a class="nav-link" href="{% url 'course:course_list' %}">课程列表</a></li>#}
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'course:course_list' %}">课程列表</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'course:course_home' %}">所有课程</a></li>
+                {% endif %}
                 {% if user.is_authenticated %}
                     <li class="nav-item d-lg-none"><a class="nav-link" href="{% url 'blog:blog_post' %}">发表文章</a></li>
-                    {#                    <li class="nav-item d-lg-none"><a class="nav-link" href="{% url 'course:course_create' %}">发布课程</a>#}
-                    {#                    </li>#}
+                    <li class="nav-item d-lg-none"><a class="nav-link" href="{% url 'course:course_create' %}">发布课程</a>
+                    </li>
                     <li class="nav-item d-lg-none"><a class="nav-link" href="{% url 'account:myself' %}">个人信息</a></li>
                     <li class="nav-item d-lg-none"><a class="nav-link"
                                                       href="{% url 'account:password_change' %}">修改密码</a></li>
@@ -26,7 +30,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="{% url 'blog:blog_post' %}">发表文章</a>
-                            {#                            <a class="dropdown-item" href="{% url 'course:course_create' %}">发布课程</a>#}
+                            <a class="dropdown-item" href="{% url 'course:course_create' %}">发布课程</a>
                             <a class="dropdown-item" href="{% url 'account:myself' %}">个人信息</a>
                             <a class="dropdown-item" href="{% url 'account:password_change' %}">修改密码</a>
                             <a class="dropdown-item" href="{% url 'account:user_logout' %}">退出</a>

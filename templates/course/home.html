@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    所有课程
+{% endblock %}
+
+{% block header %}
+    {% include 'course_header.html' %}
+{% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <table class="table table-hover">
+                    <tr>
+                        <td>序号</td>
+                        <td>标题</td>
+                        <td>讲师</td>
+                        <td>日期</td>
+                    </tr>
+                    {% for course in courses %}
+                        <tr id="course_{{ course.id }}">
+                            <td>{{ forloop.counter }}</td>
+                            <td><a class="details" target="_blank"
+                                   href="{% url 'course:course_detail' course.id %}">{{ course.title }}</a></td>
+                            <td>{{ course.user.username }}</td>
+                            <td>{{ course.create_time }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <div class="text-right">
+                    <a href="{% url 'course:course_create' %}">
+                        <button type="button" class="btn btn-primary">发布课程</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

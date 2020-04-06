@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    创建课程
+{% endblock %}
+
+{% block header %}
+    {% include 'course_header.html' %}
+{% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <form action="." method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {# {{ form.as_p }} #}
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-3">课程标题：</div>
+                        <div class="col-md-9">{{ form.title }}</div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-3">课程介绍：</div>
+                        <div class="col-md-9">{{ form.intro }}</div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-3">上传视频：</div>
+                        <div class="col-md-9">{{ form.video }}</div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-3">上传附件：</div>
+                        <div class="col-md-9">{{ form.attach }}</div>
+                    </div>
+                    <input class="btn btn-primary float-right" type="submit" value="发布课程">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

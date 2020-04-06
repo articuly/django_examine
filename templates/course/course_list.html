@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    课程列表
+{% endblock %}
+
+{% block header %}
+    {% include 'course_header.html' %}
+{% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-11 mx-auto">
+                <table class="table table-responsive table-hover">
+                    <tr>
+                        <td>序号</td>
+                        <td>标题</td>
+                        <td>讲师</td>
+                        <td>日期</td>
+                        <td>操作</td>
+                    </tr>
+                    {% for course in courses %}
+                        <tr id="course_{{ course.id }}">
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ course.title }}</td>
+                            <td>{{ course.user.username }}</td>
+                            <td>{{ course.create_time }}</td>
+                            <td><a class="detail" target="_blank" href="{% url 'course:course_detail' course.id %}">
+                                <i class="fa fa-search" aria-hidden="true"></i></a>
+                                {#                                <a style="margin-left: 20px;" class="delete"#}
+                                {#                                   href="{% url 'course:course_delete' course.id %}">#}
+                                {#                                    <i class="fa fa-trash" aria-hidden="true"></i></a>#}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <div class="text-right">
+                    <a href="{% url 'course:course_create' %}">
+                        <button type="button" class="btn btn-primary">发布课程</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#    <script type="text/javascript" src="{% static 'vendor/jquery/jquery.min.js' %}"></script>#}
+    {#    <script type="text/javascript">#}
+    {#        $(document).ready(function () {#}
+    {#            var onDelete = function () {#}
+    {#                alert("Delete it?")#}
+    {##}
+    {#                $.ajaxSetup({#}
+    {#                    data: {csrfmiddlewaretoken: '{{ csrf_token }}'},#}
+    {#                });#}
+    {##}
+    {#                $.post(this.href, function (data) {#}
+    {#                    if (data.result == "OK") {#}
+    {#                        window.location.reload()#}
+    {#                    } else {#}
+    {#                        alert("something is wrong.")#}
+    {#                    }#}
+    {#                }).fail(function () {#}
+    {#                    alert("error")#}
+    {#                })#}
+    {#                return false#}
+    {#            }#}
+    {##}
+    {#            $(".delete").click(onDelete)#}
+    {#        })#}
+    {#    </script>#}
+{% endblock %}
