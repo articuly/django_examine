@@ -30,9 +30,9 @@
                             <td>{{ course.create_time }}</td>
                             <td><a class="detail" target="_blank" href="{% url 'course:course_detail' course.id %}">
                                 <i class="fa fa-search" aria-hidden="true"></i></a>
-                                {#                                <a style="margin-left: 20px;" class="delete"#}
-                                {#                                   href="{% url 'course:course_delete' course.id %}">#}
-                                {#                                    <i class="fa fa-trash" aria-hidden="true"></i></a>#}
+                                <a style="margin-left: 20px;" class="delete"
+                                   href="{% url 'course:course_delete' course.id %}">
+                                    <i class="fa fa-trash" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -45,29 +45,29 @@
             </div>
         </div>
     </div>
-    {#    <script type="text/javascript" src="{% static 'vendor/jquery/jquery.min.js' %}"></script>#}
-    {#    <script type="text/javascript">#}
-    {#        $(document).ready(function () {#}
-    {#            var onDelete = function () {#}
-    {#                alert("Delete it?")#}
-    {##}
-    {#                $.ajaxSetup({#}
-    {#                    data: {csrfmiddlewaretoken: '{{ csrf_token }}'},#}
-    {#                });#}
-    {##}
-    {#                $.post(this.href, function (data) {#}
-    {#                    if (data.result == "OK") {#}
-    {#                        window.location.reload()#}
-    {#                    } else {#}
-    {#                        alert("something is wrong.")#}
-    {#                    }#}
-    {#                }).fail(function () {#}
-    {#                    alert("error")#}
-    {#                })#}
-    {#                return false#}
-    {#            }#}
-    {##}
-    {#            $(".delete").click(onDelete)#}
-    {#        })#}
-    {#    </script>#}
+    <script type="text/javascript" src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var onDelete = function () {
+                alert("Delete it?")
+
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+                });
+
+                $.post(this.href, function (data) {
+                    if (data.result == "OK") {
+                        window.location.reload()
+                    } else {
+                        alert("something is wrong.")
+                    }
+                }).fail(function () {
+                    alert("error")
+                })
+                return false
+            }
+
+            $(".delete").click(onDelete)
+        })
+    </script>
 {% endblock %}

@@ -4,6 +4,8 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Course
 from .forms import CourseCreateForm
 from braces.views import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.http import JsonResponse
 
 
 class CourseAllView(ListView):
@@ -44,3 +46,14 @@ class CourseCreateView(UserCourseMixin, CreateView):
 
 class CourseDetailView(UserCourseMixin, DetailView):
     template_name = 'course/course_detail.html'
+
+
+class CourseDeleteView(UserCourseMixin, DeleteView):
+    success_url = reverse_lazy('course:course_list')
+
+    def dispatch(self, *args, **kwargs):
+        r = DeleteView.dispatch(self, *args, **kwargs)
+        if self.request.is_ajax():
+            return JsonResponse({'result': 'OK'})
+        else:
+            return r
