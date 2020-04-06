@@ -30,6 +30,12 @@ class CourseListView(UserCourseMixin, ListView):
     context_object_name = 'courses'
 
 
+class CourseUpdateView(UserCourseMixin, UpdateView):
+    fields = ['title', 'intro', 'video', 'attach']
+    template_name = 'course/course_create.html'
+    success_url = '/course/list/'
+
+
 class CourseCreateView(UserCourseMixin, CreateView):
     fields = ['title', 'intro', 'video', 'attach']
     template_name = 'course/course_create.html'

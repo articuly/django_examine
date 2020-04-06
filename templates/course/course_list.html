@@ -33,6 +33,9 @@
                                 <a style="margin-left: 20px;" class="delete"
                                    href="{% url 'course:course_delete' course.id %}">
                                     <i class="fa fa-trash" aria-hidden="true"></i></a>
+                                <a style="margin-left: 20px;" class="update"
+                                   href="{% url 'course:course_update' course.id %}">
+                                    <i class="fa fa-wrench" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     {% endfor %}
