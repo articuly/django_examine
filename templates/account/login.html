@@ -34,6 +34,8 @@
                 </form>
             </div>
         </div>
+        <p class="text-center">使用第三方账号登陆：<a href="{% url "social:begin" "weibo" %}">微博</a>
+            <a href="{% url "social:begin" "linkedin-oauth2" %}">Linkedin</a></p>
         <p class="text-center">忘记密码怎么办：<a href="{% url 'account:password_reset' %}">重置密码</a></p>
     </div>
 {% endblock %}

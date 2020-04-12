@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -24,7 +25,9 @@ urlpatterns = [
     path('', include('blog.urls', namespace='root')),
     path('account/', include('account.urls', namespace='account')),
     path('course/', include('course.urls', namespace='course')),
-    path('mdeditor/', include('mdeditor.urls'))
+    path('mdeditor/', include('mdeditor.urls')),
+    url('', include('social_django.urls', namespace='social'))
 ]
+
 # 为每个多媒体文件添加对应的urlpatterns的列表里元素
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

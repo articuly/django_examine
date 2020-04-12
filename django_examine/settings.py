@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'account',
     'course',
     'mdeditor',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -126,3 +129,19 @@ LOGIN_REDIRECT_URL = '/blog/'
 LOGIN_URL = '/account/login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# 第三方登陆
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.weibo.WeiboOAuth2',  # 使用微博登录
+    'social_core.backends.weixin.WeixinOAuth2',  # 使用微信登录
+    'social_core.backends.qq.QQOAuth2',  # 使用QQ登录
+    'django.contrib.auth.backends.ModelBackend',  # 指定django的ModelBackend类
+)
+
+# 配置微博开放平台授权
+# SOCIAL_AUTH_要使用登录模块的名称大小_KEY，其他如QQ相同
+SOCIAL_AUTH_WEIBO_KEY = '3972956773'
+SOCIAL_AUTH_WEIBO_SECRET = '648131d4be21a22bd9b44cf096160ae9'
+
+# 登录成功后跳转页面
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/blog/'
