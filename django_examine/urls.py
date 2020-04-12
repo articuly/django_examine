@@ -23,7 +23,8 @@ urlpatterns = [
     path('blog/', include('blog.urls', namespace='blog')),
     path('', include('blog.urls', namespace='root')),
     path('account/', include('account.urls', namespace='account')),
-    path('course/', include('course.urls', namespace='course'))
+    path('course/', include('course.urls', namespace='course')),
+    path('mdeditor/', include('mdeditor.urls'))
 ]
 # 为每个多媒体文件添加对应的urlpatterns的列表里元素
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

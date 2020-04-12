@@ -16,6 +16,7 @@
                 <h1>{{ object.title }}</h1>
                 <p>讲师：{{ object.user.username }}</p>
                 <p>简介：{{ object.intro }}</p>
+                <p>简介：{{ object.content }}</p>
                 {% if object.video %}
                     <video src="{{ object.video.url }}" controls="controls" width="800"></video>
                 {% else %}

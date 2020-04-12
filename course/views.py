@@ -31,13 +31,13 @@ class CourseListView(UserCourseMixin, ListView):
 
 
 class CourseUpdateView(UserCourseMixin, UpdateView):
-    fields = ['title', 'intro', 'video', 'attach']
-    template_name = 'course/course_create.html'
+    fields = ['title', 'intro', 'content', 'video', 'attach']
+    template_name = 'course/course_edit.html'
     success_url = '/course/list/'
 
 
 class CourseCreateView(UserCourseMixin, CreateView):
-    fields = ['title', 'intro', 'video', 'attach']
+    fields = ['title', 'intro', 'content', 'video', 'attach']
     template_name = 'course/course_create.html'
 
     def post(self, request, *args, **kwargs):
